@@ -27,28 +27,28 @@ app.get('/api/json'
         res.status(500).json(output);
     });
 
-//product
-app.get('/api/products/',db.getAllProducts);
+//products
+app.get('/api/products/', db.getAllProducts);
 app.get('/api/products/:id', db.getProductByID);
 app.post('/api/products', db.insertProduct);
 app.put('/api/products/:id', db.updateProduct);
 app.delete('/api/products/:id', db.deleteProduct);
 
-//user
+//users
 app.get('/api/users', db.getUser);
 app.get('/api/users/:id', db.getUserByID);
 app.post('/api/users', db.insertUser);
 app.put('/api/users/:id', db.updateUser);
 app.delete('/api/users/:id', db.DeleteUser);
 
-//purchase
+//purchases
 app.get('/api/purchases', db.getPurchase);
 app.get('/api/purchases/:id', db.getPurchaseByID);
 app.post('/api/purchases', db.insertPurchase);
 app.put('/api/purchases/:id', db.updatePurchase);
 app.delete('/api/purchases/:id', db.DeletePurchase);
 
-//Purchase_item
+//Purchase_items
 app.get('/api/purchase_items', db.getPurchase_item);
 app.get('/api/purchase_items/:id', db.getPurchase_itemByID);
 app.post('/api/purchase_items', db.insertPurchase_item);
