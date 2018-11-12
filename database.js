@@ -58,16 +58,16 @@ function insertProduct(req, res) {
         .catch(function (error) {
             console.log('ERROR:', error)
             res.status(200)
-                .json({
-                    status: 'Failed',
-                    message: 'Failed to Inserted one product'
-                });
+            .json({
+                status: 'Failed',
+                message: 'Failed to Inserted one product'
+            });
         })
 }
 
 function updateProduct(req, res) {
-    db.any('update products set product_id = ${product_id}, title=${title}, price=${price}, tags=${tags}' + 'where product_id =' + req.params.id, req.body)
-
+    db.any('update products set product_id = ${product_id}, title=${title}, price=${price}, tags=${tags}' + 'where product_id =' + req.params.id ,req.body)
+        
         .then(function (data) {
             res.status(200)
                 .json({
@@ -125,7 +125,7 @@ function getPurchase_item(req, res) {
                 .json({
                     status: 'failed',
                     data: data,
-                    message: 'Failed get purchase item'
+                    message: 'Failed get purchase item' 
                 });
         })
 }
@@ -141,7 +141,7 @@ function getPurchase_itemByID(req, res) {
         })
         .catch(function (error) {
             console.log('ERROR:', error)
-            res.status(500)
+               res.status(500)
                 .json({
                     status: 'failed',
                     data: data,
@@ -165,7 +165,7 @@ function insertPurchase_item(req, res) {
             console.log('ERROR:', error)
         })
 
-
+    
 }
 function updatePurchase_item(req, res) {
     db.any('update purchase_items set purchase_id=${purchase_id},product_id=${product_id},price=${price},quantity=${quantity} where id =' + req.params.id,
@@ -194,7 +194,7 @@ function DeletePurchase_item(req, res) {
         .catch(function (error) {
             console.log('ERROR:', error)
         })
-
+        
 }
 
 //Purchase
@@ -304,22 +304,24 @@ function getUserByID(req, res) {
         })
 }
 function insertUser(req, res) {
-    db.any('insert into users(user_id,email,password,details,created_at)' +
-        'values(${user_id}, ${email}, ${password}, ${details}, ${created_at}',
+    db.none('insert into users(user_id,email,password,details,created_at)' +
+        'values(${user_id}, ${email}, ${password}, ${details}, ${created_at})',
         req.body)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted one purchase'
+                    message: 'Inserted one user'
                 });
         })
         .catch(function (error) {
             console.log('ERROR:', error)
         })
-
-
+    
 }
+
+
+
 function DeleteUser(req, res) {
     db.any('delete from users where user_id=' + req.params.id)
         .then(function (data) {
@@ -332,7 +334,7 @@ function DeleteUser(req, res) {
         .catch(function (error) {
             console.log('ERROR:', error)
         })
-
+  
 }
 function updateUser(req, res) {
     db.any('update users set email=${email},password=${password},details=${details},created_at=${created_at} where user_id =' + req.params.id,
